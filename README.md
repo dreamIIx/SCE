@@ -1,0 +1,2 @@
+# SCE
+simple codes examples
