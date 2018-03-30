@@ -1,0 +1,12 @@
+#include <sstream>
+String fts(float example)
+{
+	float a = example;
+	std::stringstream ss(std::stringstream::in | std::stringstream::out);
+
+	ss << a;
+
+	String s = ss.str();
+
+	return s;
+}

@@ -1,0 +1,7 @@
+if (event->type == Event::TextEntered)
+{
+	if (event->text.unicode <= 128)
+	{	
+		strings[*strrun] += static_cast<char>(event->text.unicode);
+	}
+}
