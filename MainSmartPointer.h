@@ -22,7 +22,14 @@ namespace drm
 			return *ptr;
 		}
 
+		T& operator->()
+		{
+			return ptr;
+		}
+
 	private:
 		T *ptr;
 	};
+
+
 };
