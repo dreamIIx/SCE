@@ -12,6 +12,10 @@ namespace drm
 			: ptr(pt)
 		{}
 
+		SmartPointer()
+			: ptr(nullptr) // адрес есть, объекта нет(на который ссылается указатель)
+		{}
+
 		~SmartPointer()
 		{
 			delete ptr;
@@ -30,6 +34,4 @@ namespace drm
 	private:
 		T *ptr;
 	};
-
-
 };
