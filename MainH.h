@@ -4,16 +4,18 @@
 namespace drm
 {
 	template <typename T>
-	class SmartPointer
+	class SmartPointer // вызов - drm::SmartPointer<int> example = new int(любое_число);
 	{
+	private:
+		T * ptr;
 	public:
-
-		SmartPointer(T *pt)
-			: ptr(pt)
-		{}
 
 		SmartPointer()
 			: ptr(nullptr) // адрес есть, объекта нет(на который ссылается указатель)
+		{}
+
+		SmartPointer(T *pt)
+			: ptr(pt)
 		{}
 
 		~SmartPointer()
@@ -21,7 +23,7 @@ namespace drm
 			delete ptr;
 		}
 
-		T& operator*()
+		T& operator*() // вызов - cout << *example << endl; (со строковым типом не сработает)
 		{
 			return *ptr;
 		}
@@ -30,8 +32,26 @@ namespace drm
 		{
 			return ptr;
 		}
+	};
 
+	template <typename T>
+	class Functor // вызов - drm::Functor<int> example(любое_число);
+	{
 	private:
-		T *ptr;
+		T i;
+	public:
+
+		Functor()
+			: i(NULL)
+		{}
+
+		Functor(T type_i)
+			: i(type_i)
+		{}
+
+		void operator()() // вызов - example();
+		{
+			cout << i + 10 << endl;
+		}
 	};
 };
