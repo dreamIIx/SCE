@@ -1,5 +1,10 @@
 #pragma once
+
 #include <iostream>
+#include <SFMl/Graphics.hpp>
+
+using namespace std;
+using namespace sf;
 
 namespace drm
 {
@@ -53,5 +58,38 @@ namespace drm
 		{
 			cout << i + 10 << endl;
 		}
+	};
+
+	class TimeGet
+	{
+	public:
+		TimeGet()
+		{}
+
+		~TimeGet()
+		{
+			delete t;
+			delete c;
+		}
+
+		Int64 operator*()
+		{
+			*t = c->getElapsedTime();
+			return t->asMicroseconds();
+		}
+
+		void restart(size_t arg)
+		{
+			if (arg == 1) c->restart();
+		}
+
+		void operator()()
+		{
+			*t = c->getElapsedTime();
+			cout << t->asMicroseconds() << endl;
+		}
+	private:
+		Clock *c = new Clock;
+		Time *t = new Time;
 	};
 };
