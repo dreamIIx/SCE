@@ -14,7 +14,6 @@ namespace drm
 	private:
 		T * ptr;
 	public:
-
 		SmartPointer()
 			: ptr(nullptr) // адрес есть, объекта нет(на который ссылается указатель)
 		{}
@@ -45,7 +44,6 @@ namespace drm
 	private:
 		T i;
 	public:
-
 		Functor()
 			: i(NULL)
 		{}
@@ -68,14 +66,7 @@ namespace drm
 
 		~TimeGet()
 		{
-			delete t;
 			delete c;
-		}
-
-		Int64 operator*()
-		{
-			*t = c->getElapsedTime();
-			return t->asMicroseconds();
 		}
 
 		void restart()
@@ -83,13 +74,42 @@ namespace drm
 			c->restart();
 		}
 
+		Int64 operator*()
+		{
+			return c->getElapsedTime().asMicroseconds();
+		}
+
 		void operator()()
 		{
-			*t = c->getElapsedTime();
-			cout << t->asMicroseconds() << endl;
+			cout << c->getElapsedTime().asMicroseconds() << endl;
 		}
 	private:
 		Clock *c = new Clock;
-		Time *t = new Time;
+	};
+
+	class CreateSpriteT
+	{
+	public:
+		Sprite * object = new Sprite;
+
+		CreateSpriteT(Texture& t)
+		{
+			object->setTexture(t);
+		}
+
+		~CreateSpriteT()
+		{
+			delete object;
+		}
+
+		void reset(int x1, int x2, int y1, int y2)
+		{
+			object->setTextureRect(IntRect(x1, y1, x2, y2));
+		}
+
+		Sprite operator()()
+		{
+			return *object;
+		}
 	};
 };
