@@ -78,9 +78,9 @@ namespace drm
 			return t->asMicroseconds();
 		}
 
-		void restart(size_t arg)
+		void restart()
 		{
-			if (arg == 1) c->restart();
+			c->restart();
 		}
 
 		void operator()()
