@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <SFMl/Graphics.hpp>
+#include <thread>
+#include <mutex>
 
 using namespace std;
 using namespace sf;
