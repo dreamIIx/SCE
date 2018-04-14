@@ -89,16 +89,47 @@ namespace drm
 		Clock *c = new Clock;
 	};
 
-	template <typename T>
-	class SmartPointerArray
+	class SmartPointerArray_Sprite
 	{
 	public:
-		SmartPointerArray()
-		{
+		Sprite * ptr[20];
+		unsigned int last_num = 0;
 
+		SmartPointerArray_Sprite()	{}
+
+		void _draw_visible(RenderWindow& win)
+		{
+			for (int i = 0; i < last_num; i++)
+			{
+				win.draw(*ptr[i]);
+			}
 		}
 
-	private:
-		T * ptr[num];
+		void _delete(unsigned int num)
+		{
+			for (int i = num - 1; i < last_num; i++)
+			{
+				ptr[i] = ptr[i + 1];
+			}
+			ptr[last_num - 1] = nullptr;
+		}
+
+		void _insert(Sprite* s, unsigned int num)
+		{
+			for (int i = num - 1; i < last_num; i++)
+			{
+				ptr[i] = ptr[i + 1];
+			}
+			ptr[num - 1] = s;
+			last_num++;
+		}
+
+		void _trade(unsigned int num1, unsigned int num2)
+		{
+			ptr[last_num] = ptr[num1];
+			ptr[num1] = ptr[num2];
+			ptr[num2] = ptr[last_num];
+			ptr[last_num] = nullptr;
+		}
 	};
 };
