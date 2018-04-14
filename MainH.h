@@ -76,9 +76,9 @@ namespace drm
 			c->restart();
 		}
 
-		Int64 operator*()
+		float operator*()
 		{
-			return c->getElapsedTime().asMicroseconds();
+			return c->getElapsedTime().asMilliseconds();
 		}
 
 		void operator()()
@@ -89,29 +89,16 @@ namespace drm
 		Clock *c = new Clock;
 	};
 
-	class CreateSpriteT
+	template <typename T>
+	class SmartPointerArray
 	{
 	public:
-		Sprite * object = new Sprite;
-
-		CreateSpriteT(Texture& t)
+		SmartPointerArray()
 		{
-			object->setTexture(t);
+
 		}
 
-		~CreateSpriteT()
-		{
-			delete object;
-		}
-
-		void reset(int x1, int x2, int y1, int y2)
-		{
-			object->setTextureRect(IntRect(x1, y1, x2, y2));
-		}
-
-		Sprite operator()()
-		{
-			return *object;
-		}
+	private:
+		T * ptr[num];
 	};
 };
