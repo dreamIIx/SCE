@@ -92,16 +92,50 @@ namespace drm
 	class SmartPointerArray_Sprite
 	{
 	public:
-		Sprite * ptr[20];
+		static const int MAX = 20;
+		Sprite * ptr[MAX];
+		bool ready[MAX];
 		unsigned int last_num = 0;
 
 		SmartPointerArray_Sprite()	{}
 
-		void _draw_visible(RenderWindow& win)
+		void _reset_visible()
+		{
+			for (int i = 0; i <= last_num - 1; i++)
+			{
+				ready[i] = true;
+			}
+		}
+
+		void _reset_from_to(unsigned int num1, unsigned int num2)
+		{
+			for (int i = num1 - 1; i <= num2 - 1; i++)
+			{
+				ready[i] = false;
+			}
+		}
+
+		inline void _draw_visible(RenderWindow& win)
 		{
 			for (int i = 0; i < last_num; i++)
 			{
-				win.draw(*ptr[i]);
+				if (ready[i])
+				{
+					win.draw(*ptr[i]);
+					ready[i] = false;
+				}
+			}
+		}
+
+		inline void _draw_from_to(RenderWindow& win, unsigned int num1, unsigned int num2)
+		{
+			for (int i = num1 - 1; i < num2; i++)
+			{
+				if (ready[i])
+				{
+					win.draw(*ptr[i]);
+					ready[i] = false;
+				}
 			}
 		}
 
@@ -112,6 +146,8 @@ namespace drm
 				ptr[i] = ptr[i + 1];
 			}
 			ptr[last_num - 1] = nullptr;
+			ready[last_num - 1] = false;
+			last_num--;
 		}
 
 		void _insert(Sprite* s, unsigned int num)
@@ -119,11 +155,12 @@ namespace drm
 			for (int i = num - 1; i < last_num; i++)
 			{
 				ptr[i] = ptr[i + 1];
+				ready[i] = true;
 			}
 			ptr[num - 1] = s;
 			last_num++;
 		}
-
+		
 		void _trade(unsigned int num1, unsigned int num2)
 		{
 			ptr[last_num] = ptr[num1];
