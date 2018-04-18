@@ -1,4 +1,6 @@
+
 rttn = (atan2(x - object.getPosition().x, y - object.getPosition().y)) * 180 / pi;
+
 // x, y - coords of subject, second point
 // object - координатная середина, отсчет (center)
 // pi - number pi
