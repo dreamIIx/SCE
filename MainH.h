@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+//#include <iostream>
 #include <SFMl/Graphics.hpp>
 #include <thread>
 #include <mutex>
@@ -8,7 +8,7 @@
 using namespace std;
 using namespace sf;
 
-namespace drm
+namespace dx
 {
 	template <typename T>
 	class SmartPointer // вызов - drm::SmartPointer<int> example = new int(любое_число);
@@ -76,7 +76,7 @@ namespace drm
 			c->restart();
 		}
 
-		float operator*()
+		Int32 operator*()
 		{
 			return c->getElapsedTime().asMilliseconds();
 		}
@@ -92,7 +92,7 @@ namespace drm
 	class SmartPointerArray_Sprite
 	{
 	public:
-		static const int MAX = 110;
+		static const int MAX = 50;
 		Sprite * ptr[MAX];
 		bool ready[MAX];
 		int last_num = 0;
