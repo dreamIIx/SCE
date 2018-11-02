@@ -1,4 +1,6 @@
-#pragma once
+//Autor -dreamIIx
+//GitHub - https://github.com/dreamIIx
+//Release on GitHub 27.09.2018
 
 //#include <iostream>
 #include <SFMl/Graphics.hpp>
@@ -176,4 +178,27 @@ namespace dx
 			ptr[last_num] = nullptr;
 		}
 	};
+
+	int randT()
+	{
+		HCRYPTPROV hProv;
+		HCRYPTPROV *phProv = &hProv;
+
+		BYTE Buf1;
+		BYTE Buf2;
+
+		BOOL retval;
+		retval = CryptAcquireContext(phProv, 0, 0, PROV_RSA_FULL, 0);
+
+		if (retval != 0)
+		{
+			CryptGenRandom(hProv, DWORD(sizeof(BYTE)), &Buf1);
+			CryptReleaseContext(hProv, 0);
+			CryptGenRandom(hProv, DWORD(sizeof(BYTE)), &Buf2);
+			CryptReleaseContext(hProv, 0);
+		}
+		int i = (int)Buf1;
+		i += (int)Buf2;
+		return i;
+	}
 };
