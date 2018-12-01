@@ -2,10 +2,13 @@
 //GitHub - https://github.com/dreamIIx
 //Release on GitHub 27.09.2018
 
-//#include <iostream>
+#include <iostream>
 #include <SFMl/Graphics.hpp>
 #include <thread>
 #include <mutex>
+#include <Windows.h>
+
+#define GETBIT(x,pos)	( ((x) & ( 0x1 << (pos) )) != 0 )
 
 using namespace std;
 using namespace sf;
@@ -13,7 +16,7 @@ using namespace sf;
 namespace dx
 {
 	template <typename T>
-	class SmartPointer // вызов - drm::SmartPointer<int> example = new int(любое_число);
+	class SmartPointer // вызов - drm::SmartPointer<T> example = new T(любое_число);
 	{
 	private:
 		T * ptr;
@@ -194,11 +197,62 @@ namespace dx
 		{
 			CryptGenRandom(hProv, DWORD(sizeof(BYTE)), &Buf1);
 			CryptReleaseContext(hProv, 0);
+		}
+		retval = CryptAcquireContext(phProv, 0, 0, PROV_RSA_FULL, 0);
+
+		if (retval != 0)
+		{
 			CryptGenRandom(hProv, DWORD(sizeof(BYTE)), &Buf2);
 			CryptReleaseContext(hProv, 0);
 		}
+
 		int i = (int)Buf1;
 		i += (int)Buf2;
+		//std::cout << i << std::endl;
 		return i;
 	}
+
+	void bbsort(std::vector<int>& v)
+	{
+		for (int j = 0; j < v.size() - 1; ++j)
+		{
+			for (int i = 0; i < v.size() - 1; ++i)
+			{
+				if (v[i] > v[i + 1])
+				{
+					int tmp = v[i];
+					v[i] = v[i + 1];
+					v[i + 1] = tmp;
+				}
+			}
+		}
+	}
+
+	/*void radixSort(std::vector<int>& a) {
+		int d = 8, w = 32;
+		for (int p = 0; p < w / d; p++) {
+			std::vector<int> c(1 << d, 0);
+
+			std::vector<int> b = a;
+			for (int i = 0; i < a.size(); i++)
+				c[(a[i] >> d * p)&((1 << d) - 1)]++;
+			for (int i = 1; i < 1 << d; i++)
+				c[i] += c[i - 1];
+			for (int i = a.size() - 1; i >= 0; i--)
+				b[--c[(a[i] >> d * p)&((1 << d) - 1)]] = a[i];
+			a = b;
+		}
+	}*/
+
+	/*int a = 1, b = 100, c = 0;
+	for (int j = 31; j >= 0; --j)
+	{
+		int tmp = 0;
+		for (int i = 31; i >= 0; --i)
+		{
+			tmp = (GETBIT(a, i) & GETBIT(b, j)) == 1 ? ((tmp + 1) << 0x1) : (tmp << 0x1);
+		}
+		c += (tmp << j);
+	}
+	std::cout << c * 0.5 << std::endl;*/
 };
