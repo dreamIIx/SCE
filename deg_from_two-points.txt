@@ -2,6 +2,6 @@
 rttn = atan2(x - object.getPosition().x, y - object.getPosition().y) * 180 / pi;
 
 // x, y - coords of subject, second point
-// object - координатная середина, отсчет (center)
+// object - ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ­Г Гї Г±ГҐГ°ГҐГ¤ГЁГ­Г , Г®ГІГ±Г·ГҐГІ (center)
 // pi - number pi
 // rttn - gradus
