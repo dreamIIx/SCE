@@ -16,13 +16,13 @@ using namespace sf;
 namespace dx
 {
 	template <typename T>
-	class SmartPointer // вызов - drm::SmartPointer<T> example = new T(любое_число);
+	class SmartPointer // ГўГ»Г§Г®Гў - drm::SmartPointer<T> example = new T(Г«ГѕГЎГ®ГҐ_Г·ГЁГ±Г«Г®);
 	{
 	private:
 		T * ptr;
 	public:
 		SmartPointer()
-			: ptr(nullptr) // адрес есть, объекта нет(на который ссылается указатель)
+			: ptr(nullptr) // Г Г¤Г°ГҐГ± ГҐГ±ГІГј, Г®ГЎГєГҐГЄГІГ  Г­ГҐГІ(Г­Г  ГЄГ®ГІГ®Г°Г»Г© Г±Г±Г»Г«Г ГҐГІГ±Гї ГіГЄГ Г§Г ГІГҐГ«Гј)
 		{}
 
 		SmartPointer(T *pt)
@@ -34,7 +34,7 @@ namespace dx
 			delete ptr;
 		}
 
-		T& operator*() // вызов - cout << *example << endl; (со строковым типом не сработает)
+		T& operator*() // ГўГ»Г§Г®Гў - cout << *example << endl; (Г±Г® Г±ГІГ°Г®ГЄГ®ГўГ»Г¬ ГІГЁГЇГ®Г¬ Г­ГҐ Г±Г°Г ГЎГ®ГІГ ГҐГІ)
 		{
 			return *ptr;
 		}
@@ -46,7 +46,7 @@ namespace dx
 	};
 
 	template <typename T>
-	class Functor // вызов - drm::Functor<int> example(любое_число);
+	class Functor // ГўГ»Г§Г®Гў - drm::Functor<int> example(Г«ГѕГЎГ®ГҐ_Г·ГЁГ±Г«Г®);
 	{
 	private:
 		T i;
@@ -59,7 +59,7 @@ namespace dx
 			: i(type_i)
 		{}
 
-		void operator()() // вызов - example();
+		void operator()() // ГўГ»Г§Г®Гў - example();
 		{
 			cout << i + 10 << endl;
 		}
@@ -255,4 +255,11 @@ namespace dx
 		c += (tmp << j);
 	}
 	std::cout << c * 0.5 << std::endl;*/
+	
+	/*int a = 1024;
+
+	int shift = static_cast<int>(::std::log2(a)) + 1;
+
+	int x = ~a & ~((~0 >> shift) << shift);
+	::std::cout << x << ::std::endl;*/ Inversion bits
 };
