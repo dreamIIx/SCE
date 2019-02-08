@@ -256,10 +256,11 @@ namespace dx
 	}
 	std::cout << c * 0.5 << std::endl;*/
 	
+	// Inversion bits:
 	/*int a = 1024;
 
 	int shift = static_cast<int>(::std::log2(a)) + 1;
 
 	int x = ~a & ~((~0 >> shift) << shift);
-	::std::cout << x << ::std::endl;*/ Inversion bits
+	::std::cout << x << ::std::endl;*/
 };
