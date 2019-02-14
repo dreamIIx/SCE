@@ -1,0 +1,43 @@
+libs:
+  debug:
+    sfml-graphics-s-d.lib
+    freetype.lib
+    jpeg.lib
+    opengl32.lib
+    sfml-window-s-d.lib
+    gdi32.lib
+    sfml-audio-s-d.lib
+    flac.lib
+    vorbisenc.lib
+    vorbisfile.lib
+    vorbis.lib
+    ogg.lib
+    openal32.lib
+    sfml-system-s-d.lib
+    winmm.lib
+    
+  -------------------
+  
+  release:
+    sfml-graphics-s.lib
+    freetype.lib
+    jpeg.lib
+    opengl32.lib
+    sfml-window-s.lib
+    gdi32.lib
+    sfml-audio-s.lib
+    flac.lib
+    vorbisenc.lib
+    vorbisfile.lib
+    vorbis.lib
+    ogg.lib
+    openal32.lib
+    sfml-system-s.lib
+    winmm.lib
+    
+debug:
+  MDd
+release:
+  MD
+  
+  DON'T FORGET --- SFML_STATIC ( _MBCS;  for this game)
