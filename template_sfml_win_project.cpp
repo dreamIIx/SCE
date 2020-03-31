@@ -70,7 +70,7 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 			{
-				isOpen = false;
+				isOpen.store(false);
 				break;
 			}
 			else if (event.type == sf::Event::KeyPressed)
