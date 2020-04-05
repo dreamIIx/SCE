@@ -114,7 +114,7 @@ void mainA(sf::RenderWindow& win, sf::View& view, volatile ::std::atomic_bool& i
 	while (is_Open.load())
 	{
 
-		view.setCenter(static_cast<float>(win.getSize().x), static_cast<float>(win.getSize().y));
+		view.setCenter(static_cast<float>(win.getSize().x / 2), static_cast<float>(win.getSize().y / 2));
 
 		win.clear();
 		win.setView(view);
