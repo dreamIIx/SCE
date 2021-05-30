@@ -340,6 +340,10 @@ int main()
     ::std::cout << &pfunc1 << ::std::endl;
     ::std::cout << &pfunc2 << ::std::endl;
 
+    // Constraints and concepts
+
+
+
     // (sub Templates) Static Polymorphism
     Instrument<double, int> instr1;
     instr1.propI = 5.5;
@@ -502,9 +506,13 @@ int main()
     //int&& rSampleInt = sampleInt;                                     // ERROR: rvalue can not be bind to an lvalue
     int&& rSampleInt2 = ::std::move(sampleInt);
     int&& rSampleInt3 = static_cast<int&&>(sampleInt);
-    ::std::cout << rSampleInt2 << '\n' << rSampleInt2 << ::std::endl;
+    ::std::cout << "just rvalue cast:\n";
+    ::std::cout << sampleInt << ' ' << rSampleInt2 << ' ' << rSampleInt3 << '\n';
     sampleInt = 68;
-    ::std::cout << rSampleInt2 << '\n' << rSampleInt2 << ::std::endl;
+    ::std::cout << sampleInt << ' ' << rSampleInt2 << ' ' << rSampleInt3 << '\n';
+    rSampleInt2 = 12;
+    rSampleInt3 = 85;
+    ::std::cout << sampleInt << ' ' << rSampleInt2 << ' ' << rSampleInt3 << ::std::endl;
 
     ::std::string&& s = ::std::string{ "sample of string" };
     ::std::cout << ::std::is_lvalue_reference<decltype(s)>::value << ' ';                           // false
